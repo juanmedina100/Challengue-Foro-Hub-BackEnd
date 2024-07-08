@@ -1,5 +1,7 @@
 package com.jimd.Security01.Config;
 
+import com.jimd.Security01.Config.filters.JwtTokenValidator;
+import com.jimd.Security01.Config.utils.JwtUtils;
 import com.jimd.Security01.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +35,8 @@ import java.util.List;
 public class SecurityConfig {
 
     @Autowired
-    private AuthenticationConfiguration authenticationConfiguration;
-    @Autowired
-    private UserDetailServiceImpl userDetailService;
+    private JwtUtils jwtUtils;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -43,21 +45,24 @@ public class SecurityConfig {
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http-> {
                     //EndPoint Publicos
-                    http.requestMatchers(HttpMethod.GET,"/secure/hello").permitAll();
+                    http.requestMatchers(HttpMethod.GET,"/auth/hello").permitAll();
+                    http.requestMatchers(HttpMethod.POST,"/auth/singup").permitAll();
+//                    http.requestMatchers(HttpMethod.GET,"/auth/+**").permitAll();
                     //EndPoint Privados
-                    http.requestMatchers(HttpMethod.GET,"/auth/hello-a").hasAuthority("CREATE");
+                    http.requestMatchers(HttpMethod.GET,"/auth/hello-a").hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.POST,"/auth/agregar").hasAuthority("CREATE");
                     //EndPointno especificado
                     http.anyRequest().authenticated();
                 })
+                .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)
                 .build();
     }
-
-    public AuthenticationManager authenticationManager() throws Exception {
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return  authenticationConfiguration.getAuthenticationManager();
     }
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider(UserDetailServiceImpl userDetailService){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
         provider.setUserDetailsService(userDetailService);
@@ -66,7 +71,12 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
+//        String clave = new BCryptPasswordEncoder(1234);
+//        System.out.println();
         return new BCryptPasswordEncoder();
     }
 
+//    public static void main(String[] args) {
+//        System.out.println(new BCryptPasswordEncoder().encode("12134"));
+//    }
 }

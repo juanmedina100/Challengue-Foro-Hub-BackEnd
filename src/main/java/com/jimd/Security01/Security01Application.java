@@ -20,60 +20,61 @@ public class Security01Application {
 		SpringApplication.run(Security01Application.class, args);
 	}
 
-	@Bean
-	CommandLineRunner init(UserRepository userRepository){
-		return args -> {
-			//CREATE PERMISION
-			PermissionEntity createPermission = PermissionEntity.builder()
-					.name("CREATE")
-					.build();
-			PermissionEntity readPermission = PermissionEntity.builder()
-					.name("READ")
-					.build();
-			PermissionEntity updatePermission = PermissionEntity.builder()
-					.name("UPDATE")
-					.build();
-			PermissionEntity deletePermission = PermissionEntity.builder()
-					.name("DELETE")
-					.build();
-			PermissionEntity refactorPermission = PermissionEntity.builder()
-					.name("REFACTOR")
-					.build();
-			//Roles
-			RoleEntity roleAdmin = RoleEntity.builder()
-					.reloEnum(RoleEnum.ADMIN)
-					.permissionEntitySet(Set.of(createPermission,readPermission,updatePermission,deletePermission))
-					.build();
-			RoleEntity roleUser = RoleEntity.builder()
-					.reloEnum(RoleEnum.USER)
-					.permissionEntitySet(Set.of(readPermission))
-					.build();
-			RoleEntity roleInvited = RoleEntity.builder()
-					.reloEnum(RoleEnum.INVITED)
-					.permissionEntitySet(Set.of(readPermission))
-					.build();
-			//CREAR USUARIOS
-			UserEntity userSantiago = UserEntity.builder()
-					.username("santiago")
-					.password("1234")
-					.isEnabled(true)
-					.accountNoExpired(true)
-					.accountNoLocked(true)
-					.redentialNoExperid(true)
-					.roles(Set.of(roleAdmin))
-					.build();
-			UserEntity userAndrea = UserEntity.builder()
-					.username("andrea")
-					.password("1234")
-					.isEnabled(true)
-					.accountNoExpired(true)
-					.accountNoLocked(true)
-					.redentialNoExperid(true)
-					.roles(Set.of(roleUser))
-					.build();
-
-			userRepository.saveAll(List.of(userSantiago,userAndrea));
-		};
-	}
+//	@Bean
+//	CommandLineRunner init(UserRepository userRepository){
+//		return args -> {
+//			//CREATE PERMISION
+//
+//			PermissionEntity createPermission = PermissionEntity.builder()
+//					.name("CREATE")
+//					.build();
+//			PermissionEntity readPermission = PermissionEntity.builder()
+//					.name("READ")
+//					.build();
+//			PermissionEntity updatePermission = PermissionEntity.builder()
+//					.name("UPDATE")
+//					.build();
+//			PermissionEntity deletePermission = PermissionEntity.builder()
+//					.name("DELETE")
+//					.build();
+//			PermissionEntity refactorPermission = PermissionEntity.builder()
+//					.name("REFACTOR")
+//					.build();
+//			//Roles
+//			RoleEntity roleAdmin = RoleEntity.builder()
+//					.reloEnum(RoleEnum.ADMIN)
+//					.permissionEntitySet(Set.of(createPermission,readPermission,updatePermission,deletePermission))
+//					.build();
+//			RoleEntity roleUser = RoleEntity.builder()
+//					.reloEnum(RoleEnum.USER)
+//					.permissionEntitySet(Set.of(readPermission))
+//					.build();
+//			RoleEntity roleInvited = RoleEntity.builder()
+//					.reloEnum(RoleEnum.INVITED)
+//					.permissionEntitySet(Set.of(readPermission))
+//					.build();
+//			//CREAR USUARIOS
+//			UserEntity userSantiago = UserEntity.builder()
+//					.username("santiago")
+//					.password("1234")
+//					.isEnabled(true)
+//					.accountNoExpired(true)
+//					.accountNoLocked(true)
+//					.redentialNoExperid(true)
+//					.roles(Set.of(roleAdmin))
+//					.build();
+//			UserEntity userAndrea = UserEntity.builder()
+//					.username("andrea")
+//					.password("1234")
+//					.isEnabled(true)
+//					.accountNoExpired(true)
+//					.accountNoLocked(true)
+//					.redentialNoExperid(true)
+//					.roles(Set.of(roleUser))
+//					.build();
+//
+//			userRepository.saveAll(List.of(userSantiago,userAndrea));
+//		};
+//	}
 
 }

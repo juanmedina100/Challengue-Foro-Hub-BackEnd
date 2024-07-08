@@ -27,4 +27,28 @@ public class RoleEntity {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "role_permissions",joinColumns = @JoinColumn(name = "role_id"),inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private Set<PermissionEntity> permissionEntitySet = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public RoleEnum getReloEnum() {
+        return reloEnum;
+    }
+
+    public void setReloEnum(RoleEnum reloEnum) {
+        this.reloEnum = reloEnum;
+    }
+
+    public Set<PermissionEntity> getPermissionEntitySet() {
+        return permissionEntitySet;
+    }
+
+    public void setPermissionEntitySet(Set<PermissionEntity> permissionEntitySet) {
+        this.permissionEntitySet = permissionEntitySet;
+    }
 }
