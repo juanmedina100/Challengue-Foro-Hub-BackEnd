@@ -1,10 +1,9 @@
 package com.jimd.Security01.controler;
 
-import com.jimd.Security01.persistencia.entities.foro.ResponEntity;
 import com.jimd.Security01.service.TopicService;
-import com.jimd.Security01.service.topic.DatosMostrarTopicList;
-import com.jimd.Security01.service.topic.DatosRegistrarTopic;
-import com.jimd.Security01.service.topic.DatosUpdateTopic;
+import com.jimd.Security01.service.dtoTopic.DatosMostrarTopicList;
+import com.jimd.Security01.service.dtoTopic.DatosRegistrarTopic;
+import com.jimd.Security01.service.dtoTopic.DatosUpdateTopic;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

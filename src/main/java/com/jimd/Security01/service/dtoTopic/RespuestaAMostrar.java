@@ -1,4 +1,4 @@
-package com.jimd.Security01.service.topic;
+package com.jimd.Security01.service.dtoTopic;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

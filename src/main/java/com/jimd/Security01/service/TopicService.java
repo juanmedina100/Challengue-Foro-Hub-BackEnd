@@ -8,11 +8,10 @@ import com.jimd.Security01.persistencia.entities.login.UserEntity;
 import com.jimd.Security01.persistencia.repository.CourseRepository;
 import com.jimd.Security01.persistencia.repository.TopicRepository;
 import com.jimd.Security01.persistencia.repository.UserRepository;
-import com.jimd.Security01.service.topic.DatosMostrarTopicList;
-import com.jimd.Security01.service.topic.DatosRegistrarTopic;
-import com.jimd.Security01.service.topic.DatosUpdateTopic;
+import com.jimd.Security01.service.dtoTopic.DatosMostrarTopicList;
+import com.jimd.Security01.service.dtoTopic.DatosRegistrarTopic;
+import com.jimd.Security01.service.dtoTopic.DatosUpdateTopic;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

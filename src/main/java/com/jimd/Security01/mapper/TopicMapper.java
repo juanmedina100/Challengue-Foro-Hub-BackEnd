@@ -1,12 +1,11 @@
 package com.jimd.Security01.mapper;
 
 import com.jimd.Security01.persistencia.entities.foro.TopicEntity;
-import com.jimd.Security01.service.topic.DatosMostrarTopicList;
-import com.jimd.Security01.service.topic.DatosRegistrarTopic;
-import com.jimd.Security01.service.topic.RespuestaAMostrar;
+import com.jimd.Security01.service.dtoTopic.DatosMostrarTopicList;
+import com.jimd.Security01.service.dtoTopic.DatosRegistrarTopic;
+import com.jimd.Security01.service.dtoTopic.RespuestaAMostrar;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class TopicMapper {

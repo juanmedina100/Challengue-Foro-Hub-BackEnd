@@ -1,9 +1,6 @@
-package com.jimd.Security01.service.topic;
+package com.jimd.Security01.service.dtoTopic;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
