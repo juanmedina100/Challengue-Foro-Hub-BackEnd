@@ -32,26 +32,26 @@ public class AuthenticatorController {
         return new ResponseEntity<>(this.userDetailService.loginUser(authLoginRequest), HttpStatus.OK);
     }
 
-    @GetMapping("/auth/hello")
-    public ResponseEntity<String> helloWork(){
-        return ResponseEntity.ok().body("Hello Work sin seguridad");
-    }
-
-    @GetMapping("/auth/hello-a")
-    public ResponseEntity<String> helloSecure(){
-        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro ADMIN");
-    }
-    @GetMapping("/auth/hello-b")
-    public ResponseEntity<String> helloSecureb(){
-        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro INVITADO");
-    }
-    @GetMapping("/auth/hello-v")
-    public ResponseEntity<String> helloSecurec(){
-        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro SOLO AUTENTICADO");
-    }
-    @PostMapping("/auth/user")
-    public ResponseEntity<UserEntity> agregar(@RequestBody UserEntity userEntity){
-        return ResponseEntity.ok().body(userEntity);
-//        return ResponseEntity.ok().body("Haz agregado");
-    }
+//    @GetMapping("/auth/hello")
+//    public ResponseEntity<String> helloWork(){
+//        return ResponseEntity.ok().body("Hello Work sin seguridad");
+//    }
+//
+//    @GetMapping("/auth/hello-a")
+//    public ResponseEntity<String> helloSecure(){
+//        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro ADMIN");
+//    }
+//    @GetMapping("/auth/hello-b")
+//    public ResponseEntity<String> helloSecureb(){
+//        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro INVITADO");
+//    }
+//    @GetMapping("/auth/hello-v")
+//    public ResponseEntity<String> helloSecurec(){
+//        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro SOLO AUTENTICADO");
+//    }
+//    @PostMapping("/auth/user")
+//    public ResponseEntity<UserEntity> agregar(@RequestBody UserEntity userEntity){
+//        return ResponseEntity.ok().body(userEntity);
+////        return ResponseEntity.ok().body("Haz agregado");
+//    }
 }
