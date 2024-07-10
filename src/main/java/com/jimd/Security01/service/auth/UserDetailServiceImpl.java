@@ -1,11 +1,11 @@
-package com.jimd.Security01.service;
+package com.jimd.Security01.service.auth;
 
 import com.jimd.Security01.Config.utils.JwtUtils;
-import com.jimd.Security01.controler.dto.AuthCreateUser;
-import com.jimd.Security01.controler.dto.AuthLoginRequest;
-import com.jimd.Security01.controler.dto.AuthResponse;
-import com.jimd.Security01.persistencia.RoleEntity;
-import com.jimd.Security01.persistencia.UserEntity;
+import com.jimd.Security01.controler.dtoAuth.AuthCreateUser;
+import com.jimd.Security01.controler.dtoAuth.AuthLoginRequest;
+import com.jimd.Security01.controler.dtoAuth.AuthResponse;
+import com.jimd.Security01.persistencia.entities.login.RoleEntity;
+import com.jimd.Security01.persistencia.entities.login.UserEntity;
 import com.jimd.Security01.persistencia.repository.RoleRepositorio;
 import com.jimd.Security01.persistencia.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;

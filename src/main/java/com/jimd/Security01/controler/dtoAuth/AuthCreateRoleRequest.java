@@ -1,4 +1,4 @@
-package com.jimd.Security01.controler.dto;
+package com.jimd.Security01.controler.dtoAuth;
 
 import jakarta.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;

@@ -1,9 +1,11 @@
-package com.jimd.Security01.persistencia;
+package com.jimd.Security01.persistencia.entities.login;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +14,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "user")
 @Table(name="users")
 public class UserEntity {
     @Id
@@ -29,6 +31,9 @@ public class UserEntity {
     private boolean accountNoLocked;
     @Column(name = "credential_No_Expired")
     private boolean redentialNoExperid;
+    @CreationTimestamp
+    @Column(name = "fecha_creacion")
+    private LocalDateTime fechaCreacion;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))

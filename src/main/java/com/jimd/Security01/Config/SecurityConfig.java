@@ -2,7 +2,7 @@ package com.jimd.Security01.Config;
 
 import com.jimd.Security01.Config.filters.JwtTokenValidator;
 import com.jimd.Security01.Config.utils.JwtUtils;
-import com.jimd.Security01.service.UserDetailServiceImpl;
+import com.jimd.Security01.service.auth.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,18 +16,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -45,12 +37,12 @@ public class SecurityConfig {
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http-> {
                     //EndPoint Publicos
-                    http.requestMatchers(HttpMethod.GET,"/auth/hello").permitAll();
+                    http.requestMatchers(HttpMethod.POST,"/auth/login").permitAll();
                     http.requestMatchers(HttpMethod.POST,"/auth/singup").permitAll();
-//                    http.requestMatchers(HttpMethod.GET,"/auth/+**").permitAll();
+                    http.requestMatchers("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll();
                     //EndPoint Privados
                     http.requestMatchers(HttpMethod.GET,"/auth/hello-a").hasAnyRole("ADMIN");
-                    http.requestMatchers(HttpMethod.POST,"/auth/agregar").hasAuthority("CREATE");
+                    http.requestMatchers(HttpMethod.POST,"/auth/hello-b").hasAnyRole("INVITED");
                     //EndPointno especificado
                     http.anyRequest().authenticated();
                 })

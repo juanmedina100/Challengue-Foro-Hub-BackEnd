@@ -1,8 +1,7 @@
-package com.jimd.Security01.controler.dto;
+package com.jimd.Security01.controler.dtoAuth;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.validation.annotation.Validated;
 
 public record AuthCreateUser(
         @NotBlank String username,

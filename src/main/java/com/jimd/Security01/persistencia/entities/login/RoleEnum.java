@@ -1,4 +1,4 @@
-package com.jimd.Security01.persistencia;
+package com.jimd.Security01.persistencia.entities.login;
 
 public enum RoleEnum {
     ADMIN,

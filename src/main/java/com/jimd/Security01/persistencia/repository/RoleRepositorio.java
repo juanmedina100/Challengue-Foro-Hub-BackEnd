@@ -1,6 +1,6 @@
 package com.jimd.Security01.persistencia.repository;
 
-import com.jimd.Security01.persistencia.RoleEntity;
+import com.jimd.Security01.persistencia.entities.login.RoleEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

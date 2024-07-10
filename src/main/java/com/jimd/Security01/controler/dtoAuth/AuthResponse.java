@@ -1,4 +1,4 @@
-package com.jimd.Security01.controler.dto;
+package com.jimd.Security01.controler.dtoAuth;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

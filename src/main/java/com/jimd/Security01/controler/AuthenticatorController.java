@@ -1,11 +1,11 @@
 package com.jimd.Security01.controler;
 
-import com.jimd.Security01.controler.dto.AuthCreateUser;
-import com.jimd.Security01.controler.dto.AuthLoginRequest;
-import com.jimd.Security01.controler.dto.AuthResponse;
-import com.jimd.Security01.persistencia.UserEntity;
-import com.jimd.Security01.service.UserDetailServiceImpl;
-import com.jimd.Security01.service.UsersService;
+import com.jimd.Security01.controler.dtoAuth.AuthCreateUser;
+import com.jimd.Security01.controler.dtoAuth.AuthLoginRequest;
+import com.jimd.Security01.controler.dtoAuth.AuthResponse;
+import com.jimd.Security01.persistencia.entities.login.UserEntity;
+import com.jimd.Security01.service.auth.UserDetailServiceImpl;
+import com.jimd.Security01.service.auth.UsersService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class AuthenticatorController {
         return new ResponseEntity<>(this.userDetailService.creteUser(authCreateUser),HttpStatus.CREATED);
     }
     @PostMapping("/auth/login")
-    public ResponseEntity<AuthResponse> login(AuthLoginRequest authLoginRequest){
+    public ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthLoginRequest authLoginRequest){
         return new ResponseEntity<>(this.userDetailService.loginUser(authLoginRequest), HttpStatus.OK);
     }
 
@@ -39,7 +39,15 @@ public class AuthenticatorController {
 
     @GetMapping("/auth/hello-a")
     public ResponseEntity<String> helloSecure(){
-        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro");
+        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro ADMIN");
+    }
+    @GetMapping("/auth/hello-b")
+    public ResponseEntity<String> helloSecureb(){
+        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro INVITADO");
+    }
+    @GetMapping("/auth/hello-v")
+    public ResponseEntity<String> helloSecurec(){
+        return ResponseEntity.ok().body("Esta Web debe ser autenticada ...Seguro SOLO AUTENTICADO");
     }
     @PostMapping("/auth/user")
     public ResponseEntity<UserEntity> agregar(@RequestBody UserEntity userEntity){
