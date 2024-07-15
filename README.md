@@ -106,6 +106,10 @@ Agregar un nuevo topico a la base de datos:
 ### Mostrando topico recien ingresado (muestra el topico mas reciente)
 ![7mostrandotopic.jpg](images/7mostrandotopic.jpg)
 
+### Accede a la documentación
 
+Documentación generada por Swagger.
+
+http://localhost:8080/swagger-ui/index.html
 
 ¡Esperamos que disfrutes usando el ForoHub!
