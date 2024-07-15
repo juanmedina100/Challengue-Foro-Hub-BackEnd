@@ -9,13 +9,16 @@ import com.jimd.Security01.persistencia.repository.CourseRepository;
 import com.jimd.Security01.persistencia.repository.TopicRepository;
 import com.jimd.Security01.persistencia.repository.UserRepository;
 import com.jimd.Security01.service.dtoTopic.DatosMostrarTopicList;
+import com.jimd.Security01.service.dtoTopic.DatosMostrarUnTopic;
 import com.jimd.Security01.service.dtoTopic.DatosRegistrarTopic;
 import com.jimd.Security01.service.dtoTopic.DatosUpdateTopic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TopicService {
@@ -47,7 +50,7 @@ public class TopicService {
     }
     //Lista de topico
     public List<DatosMostrarTopicList> topics(){
-        return TopicMapper.toTopiccList(topicRepository.findAll());
+        return TopicMapper.toTopiccList(topicRepository.findAll(Sort.by(Sort.Direction.DESC,"fechaCreacion")));
     }
     //Actualizar topico
     public DatosUpdateTopic updateTopic(Long id, DatosUpdateTopic datosUpdateTopic){
@@ -81,12 +84,12 @@ public class TopicService {
         }
         topicRepository.deleteById(id);
     }
-    //bUSCAR UN TOPIC
-    public DatosRegistrarTopic searchTopic(Long id){
+    //Buscar un topico
+    public DatosMostrarUnTopic searchTopic(Long id){
         Optional<TopicEntity> topic = topicRepository.findById(id);
         if (!topic.isPresent()){
             throw new RuntimeException("El topico no exite");
         }
-        return TopicMapper.toDatosMostrar(topic.get());
+        return TopicMapper.toDatosMostrarUnTopic(topic.get());
     }
 }

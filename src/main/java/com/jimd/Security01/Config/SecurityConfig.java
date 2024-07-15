@@ -40,7 +40,7 @@ public class SecurityConfig {
                     http.requestMatchers(HttpMethod.POST,"/auth/login").permitAll();
                     http.requestMatchers(HttpMethod.POST,"/auth/singup").permitAll();
                     http.requestMatchers("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll();
-                    //EndPoint Privados
+                    //EndPoint Privados   /swagger-ui/v3/api-docs/swagger-ui.html
                     http.requestMatchers(HttpMethod.GET,"/auth/hello-a").hasAnyRole("ADMIN");
                     http.requestMatchers(HttpMethod.POST,"/auth/hello-b").hasAnyRole("INVITED");
                     //EndPointno especificado

@@ -2,6 +2,7 @@ package com.jimd.Security01.controler;
 
 import com.jimd.Security01.service.TopicService;
 import com.jimd.Security01.service.dtoTopic.DatosMostrarTopicList;
+import com.jimd.Security01.service.dtoTopic.DatosMostrarUnTopic;
 import com.jimd.Security01.service.dtoTopic.DatosRegistrarTopic;
 import com.jimd.Security01.service.dtoTopic.DatosUpdateTopic;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -40,7 +41,7 @@ public class TopicController {
         topicService.deleteTopicc(id);
     }
     @GetMapping("/topic/{id}")
-    public ResponseEntity<DatosRegistrarTopic>  topicById(@Valid @PathVariable Long id){
+    public ResponseEntity<DatosMostrarUnTopic>  topicById(@Valid @PathVariable Long id){
         return new ResponseEntity<>(topicService.searchTopic(id),HttpStatus.OK);
     }
 

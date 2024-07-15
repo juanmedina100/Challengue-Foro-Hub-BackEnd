@@ -1,7 +1,9 @@
 package com.jimd.Security01.mapper;
 
 import com.jimd.Security01.persistencia.entities.foro.TopicEntity;
+import com.jimd.Security01.service.dtoRespon.DatosMostrarRespon;
 import com.jimd.Security01.service.dtoTopic.DatosMostrarTopicList;
+import com.jimd.Security01.service.dtoTopic.DatosMostrarUnTopic;
 import com.jimd.Security01.service.dtoTopic.DatosRegistrarTopic;
 import com.jimd.Security01.service.dtoTopic.RespuestaAMostrar;
 
@@ -40,5 +42,19 @@ public class TopicMapper {
                 topic.getUser().getId()
         );
         return topico;
+    }
+
+    public static DatosMostrarUnTopic toDatosMostrarUnTopic(TopicEntity topic){
+        return new DatosMostrarUnTopic(
+                topic.getTitulo(),
+                topic.getMensaje(),
+                topic.getFechaCreacion(),
+                topic.isStatus(),
+                topic.getCourse().getNombre(),
+                topic.getUser().getUsername(),
+                topic.getResponEntityList().stream().map(respon->
+                        new DatosMostrarRespon(
+                                respon.getMensaje(),
+                                respon.getFechaCreacion())).collect(Collectors.toList()));
     }
 }
