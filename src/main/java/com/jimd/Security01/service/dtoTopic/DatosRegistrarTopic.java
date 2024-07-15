@@ -1,5 +1,6 @@
 package com.jimd.Security01.service.dtoTopic;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +14,7 @@ public record DatosRegistrarTopic(
         @NotBlank
         @Column(unique = true)
         String mensaje,
+        @JsonIgnore
         @CreationTimestamp
         LocalDateTime fechaCreacion,
         boolean status,
